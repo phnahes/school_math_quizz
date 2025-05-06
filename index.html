@@ -2,22 +2,118 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Quiz de Matemática</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quizz de Matemática</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 20px; }
-    .quiz-container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    h1 { text-align: center; }
-    .question { margin-bottom: 20px; }
-    .answers label { display: block; margin-bottom: 8px; cursor: pointer; }
-    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
-    .result { margin-top: 20px; font-weight: bold; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .quiz-container {
+      width: 100%;
+      max-width: 700px;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .question {
+      margin-bottom: 25px;
+      padding: 15px;
+      border-left: 5px solid transparent;
+      border-radius: 8px;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .question.correct {
+      border-color: #28a745;
+      background-color: #eafaf1;
+    }
+
+    .question.incorrect {
+      border-color: #dc3545;
+      background-color: #fdecea;
+    }
+
+    .answers label {
+      display: block;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid transparent;
+      transition: background 0.3s, border 0.3s;
+    }
+
+    .answers input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .correct {
+      color: green;
+      font-weight: bold;
+      border: 1px solid #28a745;
+      background-color: #d4edda;
+    }
+
+    .incorrect {
+      color: red;
+      font-weight: bold;
+      border: 1px solid #dc3545;
+      background-color: #f8d7da;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 25px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 500px) {
+      .quiz-container {
+        padding: 20px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="quiz-container">
     <h1>Quiz de Matemática</h1>
     <form id="quiz-form"></form>
-    <button onclick="submitQuiz()">Enviar Respostas</button>
+    <button id="submit-btn" onclick="submitQuiz()">Enviar Respostas</button>
+    <button onclick="location.reload()">Reiniciar Quiz</button>
     <div id="result" class="result"></div>
   </div>
 
@@ -37,6 +133,7 @@
       selectedQuestions.forEach((q, index) => {
         const div = document.createElement('div');
         div.className = 'question';
+        div.setAttribute('data-index', index);
         div.innerHTML = `<p><strong>${index + 1}.</strong> ${q.question}</p>`;
 
         const answerDiv = document.createElement('div');
@@ -45,8 +142,8 @@
         q.choices.forEach((choice, i) => {
           const id = `q${index}_a${i}`;
           answerDiv.innerHTML += `
-            <label>
-              <input type="radio" name="q${index}" value="${choice}"> ${choice}
+            <label for="${id}" data-value="${choice}">
+              <input type="radio" id="${id}" name="q${index}" value="${choice}"> ${choice}
             </label>`;
         });
 
@@ -57,9 +154,27 @@
 
     function submitQuiz() {
       let score = 0;
+      document.getElementById('submit-btn').disabled = true;
+
       selectedQuestions.forEach((q, index) => {
         const selected = document.querySelector(`input[name=q${index}]:checked`);
-        if (selected && selected.value === q.answer) score++;
+        const questionBlock = document.querySelector(`div[data-index='${index}']`);
+        const labels = questionBlock.querySelectorAll('.answers label');
+
+        let isCorrect = false;
+
+        labels.forEach(label => {
+          const value = label.getAttribute('data-value');
+          if (value === q.answer) {
+            label.classList.add('correct');
+            if (selected && selected.value === value) isCorrect = true;
+          } else if (selected && selected.value === value) {
+            label.classList.add('incorrect');
+          }
+        });
+
+        questionBlock.classList.add(isCorrect ? 'correct' : 'incorrect');
+        if (isCorrect) score++;
       });
 
       const result = document.getElementById('result');
@@ -68,4 +183,3 @@
   </script>
 </body>
 </html>
-
