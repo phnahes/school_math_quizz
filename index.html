@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz de Matemática</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 20px; }
+    .quiz-container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h1 { text-align: center; }
+    .question { margin-bottom: 20px; }
+    .answers label { display: block; margin-bottom: 8px; cursor: pointer; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    .result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Quiz de Matemática</h1>
+    <form id="quiz-form"></form>
+    <button onclick="submitQuiz()">Enviar Respostas</button>
+    <div id="result" class="result"></div>
+  </div>
+
+  <script src="questions.js"></script>
+  <script>
+    let selectedQuestions = shuffleArray(questions).slice(0, 5);
+    renderQuiz();
+
+    function shuffleArray(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function renderQuiz() {
+      const form = document.getElementById('quiz-form');
+      form.innerHTML = '';
+
+      selectedQuestions.forEach((q, index) => {
+        const div = document.createElement('div');
+        div.className = 'question';
+        div.innerHTML = `<p><strong>${index + 1}.</strong> ${q.question}</p>`;
+
+        const answerDiv = document.createElement('div');
+        answerDiv.className = 'answers';
+
+        q.choices.forEach((choice, i) => {
+          const id = `q${index}_a${i}`;
+          answerDiv.innerHTML += `
+            <label>
+              <input type="radio" name="q${index}" value="${choice}"> ${choice}
+            </label>`;
+        });
+
+        div.appendChild(answerDiv);
+        form.appendChild(div);
+      });
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      selectedQuestions.forEach((q, index) => {
+        const selected = document.querySelector(`input[name=q${index}]:checked`);
+        if (selected && selected.value === q.answer) score++;
+      });
+
+      const result = document.getElementById('result');
+      result.textContent = `Você acertou ${score} de ${selectedQuestions.length} perguntas!`;
+    }
+  </script>
+</body>
+</html>
+
