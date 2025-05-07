@@ -98,7 +98,7 @@ const questions = [
     question: "Se um bolo é dividido igualmente entre 4 pessoas, qual parte cada um recebe?",
     choices: ["1/2", "1/3", "1/4", "1/5"],
     answer: "1/4"
-  }
+  },
   {
     question: "Qual é o dobro de 25?",
     choices: ["40", "45", "50", "55"],
@@ -200,4 +200,5 @@ const questions = [
     answer: "99"
   }
 ];
+
 
