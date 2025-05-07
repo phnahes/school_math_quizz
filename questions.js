@@ -99,5 +99,105 @@ const questions = [
     choices: ["1/2", "1/3", "1/4", "1/5"],
     answer: "1/4"
   }
+  {
+    question: "Qual é o dobro de 25?",
+    choices: ["40", "45", "50", "55"],
+    answer: "50"
+  },
+  {
+    question: "Qual é o valor de 5²?",
+    choices: ["10", "25", "15", "30"],
+    answer: "25"
+  },
+  {
+    question: "Se um triângulo tem dois lados com 5cm e um com 6cm, qual é seu perímetro?",
+    choices: ["16cm", "18cm", "15cm", "14cm"],
+    answer: "16cm"
+  },
+  {
+    question: "Qual é a próxima fração equivalente a 1/2: 2/4, 3/6, 4/8, ...?",
+    choices: ["5/9", "5/10", "6/12", "5/8"],
+    answer: "5/10"
+  },
+  {
+    question: "Quanto é 13 + 24?",
+    choices: ["37", "36", "38", "39"],
+    answer: "37"
+  },
+  {
+    question: "Qual é o número que somado com 18 resulta em 30?",
+    choices: ["10", "12", "14", "16"],
+    answer: "12"
+  },
+  {
+    question: "Quanto é 0,1 + 0,2?",
+    choices: ["0,2", "0,3", "0,25", "0,4"],
+    answer: "0,3"
+  },
+  {
+    question: "Se um quadrado tem 4 lados de 8cm, qual é seu perímetro?",
+    choices: ["32cm", "24cm", "36cm", "30cm"],
+    answer: "32cm"
+  },
+  {
+    question: "Qual número multiplicado por 0 dá 0?",
+    choices: ["Qualquer número", "Somente 0", "Apenas 1", "Nenhum"],
+    answer: "Qualquer número"
+  },
+  {
+    question: "Qual número está entre 45 e 55?",
+    choices: ["42", "56", "48", "60"],
+    answer: "48"
+  },
+  {
+    question: "Quanto é 1/4 + 1/4?",
+    choices: ["1/2", "1/3", "1/8", "3/4"],
+    answer: "1/2"
+  },
+  {
+    question: "Se você dobrar 8, depois somar 4, qual será o resultado?",
+    choices: ["16", "20", "18", "22"],
+    answer: "20"
+  },
+  {
+    question: "Qual número tem 3 dezenas e 4 unidades?",
+    choices: ["34", "43", "30", "44"],
+    answer: "34"
+  },
+  {
+    question: "Qual é a metade de 36?",
+    choices: ["16", "17", "18", "20"],
+    answer: "18"
+  },
+  {
+    question: "Quantos minutos tem 2 horas?",
+    choices: ["100", "90", "120", "60"],
+    answer: "120"
+  },
+  {
+    question: "Se uma dúzia tem 12 ovos, quantos ovos há em 2 dúzias?",
+    choices: ["22", "20", "24", "26"],
+    answer: "24"
+  },
+  {
+    question: "Quanto é 10³ (dez elevado à terceira potência)?",
+    choices: ["1000", "100", "300", "30"],
+    answer: "1000"
+  },
+  {
+    question: "Quanto falta para 70 chegar a 100?",
+    choices: ["20", "25", "30", "35"],
+    answer: "30"
+  },
+  {
+    question: "Se uma pizza tem 8 fatias e você come 3, quantas sobram?",
+    choices: ["4", "5", "6", "3"],
+    answer: "5"
+  },
+  {
+    question: "Qual número é o antecessor de 100?",
+    choices: ["99", "98", "101", "100"],
+    answer: "99"
+  }
 ];
 
