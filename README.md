@@ -9,6 +9,7 @@ Um quiz de matemática simples, escrito em HTML, CSS e JavaScript puro. O projet
 1. **Abra o arquivo `index.html` no navegador**
 
 > Nenhum servidor local é necessário. Todo o conteúdo está embutido (inclusive as questões), então você pode abrir diretamente com duplo clique ou com um live server.
+
 Disponivel em: https://phnahes.github.io/school_math_quizz/
 
 ---
